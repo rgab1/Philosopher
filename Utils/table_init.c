@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 19:33:28 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/10 20:43:35 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/10 21:18:24 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	fork_mutex_failed(int i, t_table *table)
 {
 	while (--i >= 0)
 		pthread_mutex_destroy(&table->forks[i]);
-	free(table->forks);
 	return ();// a gerer un message d'erreur disant que pthread_mutex_init a fail
 }
 
@@ -55,9 +54,10 @@ t_table	*table_init(int num_philos, int time_to_die, int time_to_eat,
 	table->time_to_die = time_to_die;
 	table->time_to_eat = time_to_eat;
 	table->time_to_sleep = time_to_sleep;
+	table->start_time = 0;
 	table->sim_stop = 0;
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->num_philos);
 	if (mutex_init(table))
-		return (free(table), NULL);
+		return (free(table->forks), free(table), NULL);
 	return (table);
 }
