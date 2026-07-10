@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 19:28:22 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/10 19:28:42 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/10 19:55:52 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_philo {
 
     pthread_t       thread_id;      // The thread representing this philosopher
 
+	pthread_mutex_t meal_mutex;
     pthread_mutex_t *left_fork;     // Pointer to their own fork
     pthread_mutex_t *right_fork;    // Pointer to their neighbor's fork
 
