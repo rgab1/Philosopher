@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 21:08:49 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/10 21:27:12 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/12 17:40:46 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	philo_mutex_failed(int i, t_philo *philos)
 {
 	while (--i >= 0)
 		pthread_mutex_destroy(&philos[i].meal_mutex);
+	put_error(ERROR_MUTEX_INIT_FAILED);
 }
 
 t_philo *philosopher_init(t_table *table)
@@ -25,7 +26,7 @@ t_philo *philosopher_init(t_table *table)
 
 	philos = malloc(sizeof(t_philo) * table->num_philos);
 	if (!philos)
-		return (NULL); // a gerer message erreur malloc failed
+		return (put_error(ERROR_MALLOC_FAILED), NULL);
 	i = 0;
 	while (i < table->num_philos)
 	{
@@ -36,7 +37,7 @@ t_philo *philosopher_init(t_table *table)
 		philos[i].left_fork = &table->forks[i];
 		philos[i].right_fork = &table->forks[(i + 1) % table->num_philos];
 		if (pthread_mutex_init(&philos[i].meal_mutex, NULL) != 0)
-			return (philo_mutex_failed(i, philos), free(philos), NULL); //a gerer message erreur mutex failed
+			return (philo_mutex_failed(i, philos), free(philos), NULL);
 		i++;
 	}
 	return (philos);

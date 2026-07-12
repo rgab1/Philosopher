@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 19:28:22 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/12 16:37:02 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/12 16:49:35 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_putstr_fd(char *str, int fd);
 long	get_current_time(void);
 
 t_philo	*philosopher_init(t_table *table);
-t_table	*table_init(int num_philos, int time_to_die, int time_to_eat,
-					int time_to_sleep);
+t_table	*table_init(int ac, char *av, t_table *table);
 
 
