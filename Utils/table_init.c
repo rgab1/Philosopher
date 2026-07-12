@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 19:33:28 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/12 17:06:38 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/12 18:39:21 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_table	*table_init(int ac, char **av)
 	if (!table)
 		return (put_error(ERROR_MALLOC_FAILED);l
 	if (parsing(ac, av, table))
-		return (NULL); // a gerer parsing a fail
+		return (free(table), NULL);
 	table->start_time = 0;
 	table->sim_stop = 0;
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->num_philos);

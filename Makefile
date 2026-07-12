@@ -2,10 +2,8 @@ NAME = philosopher
 CC = cc
 C_FLAGS = -Wall -Wextra -Werror
 
-LIBFT_DIR = Libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-SRC_UTILS = 
+SRC_UTILS = ft_atoi.c ft_putstr_fd.c get_current_time.c parsing.c \
+			philos_init.c put_error.c table_init.c
 
 SRC_ROUTINE = 
 
@@ -17,28 +15,23 @@ OBJ = $(SRC:.c=.o)
 
 DEPENDENCIES = $(OBJ:.o=.d)
 
-INCLUDES = -I Includes -I $(LIBFT_DIR)
+INCLUDES = -I Includes
 
-all: $(LIBFT) $(NAME)
+all: $(NAME)
 
 -include $(DEPENDENCIES)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
-
 $(NAME): $(OBJ)
-	$(CC) $(C_FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	$(CC) $(C_FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(C_FLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -f $(OBJ) $(DEPENDENCIES)
-	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
