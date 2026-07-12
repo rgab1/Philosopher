@@ -1,0 +1,14 @@
+friday 10 july 2026
+
+Today i:
+- Created the basic structures for the project (t_table and t_philo)
+- Created the function to initialize the t_table stuct
+- Created the function to initialize the t_philo stucts
+- Created the get_current_time func to get time in milliseconds
+- Created the error printing functions, one that locks write_mutex and one that doesnt
+- Created the .gitignore file
+
+I stille need to:
+- Create the philo routine
+- Create the function that checks the given arguments
+- Create the function to start the simulation
