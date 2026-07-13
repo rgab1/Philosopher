@@ -1,6 +1,6 @@
-friday 10 july 2026
+Friday 10 July 2026
 
-Today i:
+Today I:
 - Created the basic structures for the project (t_table and t_philo)
 - Created the function to initialize the t_table stuct
 - Created the function to initialize the t_philo stucts
@@ -11,4 +11,15 @@ Today i:
 I stille need to:
 - Create the philo routine
 - Create the function that checks the given arguments
+- Create the function to start the simulation
+- Handle error management
+
+Sunday 12 July 2026
+
+Today I:
+- Created the parsing func and implemented it to the table_init func
+- Handled the error management in all the current files
+
+I still need to:
+- Create the philo routine
 - Create the function to start the simulation
