@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   smart_sleep.c                                      :+:      :+:    :+:   */
+/*   check_sim_stop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/13 04:45:53 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/13 08:01:15 by grivault         ###   ########.fr       */
+/*   Created: 2026/07/13 05:43:44 by grivault          #+#    #+#             */
+/*   Updated: 2026/07/13 05:45:54 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosopher.h>
 
-void	smart_sleep(long sleep_time, t_table *table)
+int	check_sim_stop(t_table *table)
 {
-	long	start_time;
+	int	status;
 
-	start_time = get_current_time();
-	while ((get_current_time() - start_time) < sleep_time)
-	{
-		if (check_sim_stop(table))
-			break ;
-		usleep(500);
-	}
+	pthread_mutex_lock(&table->sync_mutex);
+	status = table->sim_stop;
+	pthread_mutex_unlock(&table->sync_mutex);
+	return (status);
 }
