@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 19:33:28 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/12 18:39:21 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/14 05:47:13 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static int	mutex_init(t_table *table)
 	int	i;
 
 	i = 0;
-	if (pthread_mutex_init(&table->write_mutex, NULL) != 0)
+	if (pthread_mutex_init(&table->write_mutex, NULL))
 		return (put_error(ERROR_MUTEX_INIT_FAILED), 1);
-	if (pthread_mutex_init(&table->sync_mutex, NULL) != 0)
+	if (pthread_mutex_init(&table->sync_mutex, NULL))
 		return (pthread_mutex_destroy(&table->write_mutex),
-			   put_error(ERROR_MUTEX_INIT_FAILED), 1);
+			put_error(ERROR_MUTEX_INIT_FAILED), 1);
 	while (i < table->num_philos)
 	{
-		if (pthread_mutex_init(&table->forks[i], NULL) != 0)
+		if (pthread_mutex_init(&table->forks[i], NULL))
 		{
 			pthread_mutex_destroy(&table->sync_mutex);
 			pthread_mutex_destroy(&table->write_mutex);
@@ -48,7 +48,7 @@ t_table	*table_init(int ac, char **av)
 
 	table = malloc(sizeof(t_table));
 	if (!table)
-		return (put_error(ERROR_MALLOC_FAILED);l
+		return (put_error(ERROR_MALLOC_FAILED), NULL);
 	if (parsing(ac, av, table))
 		return (free(table), NULL);
 	table->start_time = 0;

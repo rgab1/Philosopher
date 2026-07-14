@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 21:08:49 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/12 17:40:46 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/14 05:46:25 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,24 @@ static void	philo_mutex_failed(int i, t_philo *philos)
 	put_error(ERROR_MUTEX_INIT_FAILED);
 }
 
-t_philo *philosopher_init(t_table *table)
+static void	forks_assignation(int i, t_philo *philo)
+{
+	t_table	*table;
+
+	table = philo->table;
+	if ((i + 1) % 2 == 0)
+	{
+		philo[i].first_fork = &table->forks[i];
+		philo[i].second_fork = &table->forks[(i + 1) % table->num_philos];
+	}
+	else
+	{
+		philo[i].second_fork = &table->forks[i];
+		philo[i].first_fork = &table->forks[(i + 1) % table->num_philos];
+	}
+}
+
+t_philo	*philosophers_init(t_table *table)
 {
 	t_philo	*philos;
 	int		i;
@@ -34,8 +51,7 @@ t_philo *philosopher_init(t_table *table)
 		philos[i].last_meal_time = 0;
 		philos[i].meals_eaten = 0;
 		philos[i].table = table;
-		philos[i].left_fork = &table->forks[i];
-		philos[i].right_fork = &table->forks[(i + 1) % table->num_philos];
+		forks_assignation(i, philos);
 		if (pthread_mutex_init(&philos[i].meal_mutex, NULL) != 0)
 			return (philo_mutex_failed(i, philos), free(philos), NULL);
 		i++;

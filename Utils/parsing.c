@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/12 16:28:48 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/12 18:38:09 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/14 05:48:18 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,21 @@ static int	table_value_assignation(char **av, t_table *table)
 {
 	int	i;
 
-	i = 0
+	i = 1;
 	table->num_philos = ft_atoi(av[i++]); // a tester que la fonction atoi gere bien plusieurs +/-
 	table->time_to_die = ft_atoi(av[i++]);
 	table->time_to_eat = ft_atoi(av[i++]);
 	table->time_to_sleep = ft_atoi(av[i++]);
 	if (av[i])
 		table->max_meals = ft_atoi(av[i]);
-	if (table->num_philos < 0 || table->time_to_die < 0 ||
-			table->time_to_eat < 0 ||table->time_to_sleep < 0 ||
-			table->max_meals < 0)
-		return (put_error(ERROR_ARGS_POSITVE_NBR), 1);
+	else
+		table->max_meals = 0;
+	if (table->num_philos < 0 || table->time_to_die < 0
+		|| table->time_to_eat < 0 || table->time_to_sleep < 0
+		|| table->max_meals < 0)
+		return (put_error(ERROR_ARGS_POSITIVE_NBR), 1);
+	if (!av[i])
+		table->max_meals = -1;
 	return (0);
 }
 
@@ -42,8 +46,8 @@ int	parsing(int ac, char **av, t_table *table)
 	int	i;
 	int	j;
 
-	i = 0;
-	if (ac < 4 || ac > 5 )
+	i = 1;
+	if (ac < 5 || ac > 6)
 		return (put_error(ERROR_EXPECTED_NBR_ARGS), 1);
 	while (av[i])
 	{
@@ -53,7 +57,7 @@ int	parsing(int ac, char **av, t_table *table)
 		while (av[i][j])
 		{
 			if (!ft_isdigit(av[i][j++]))
-				return (put_error(ERROR_ARGS_POSITVE_NBR), 1);
+				return (put_error(ERROR_ARGS_POSITIVE_NBR), 1);
 		}
 		i++;
 	}
