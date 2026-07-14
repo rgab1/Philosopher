@@ -1,11 +1,12 @@
-NAME = philosopher
+NAME = philo
 CC = cc
-C_FLAGS = -Wall -Wextra -Werror
+C_FLAGS = -Wall -Wextra -Werror -pthread -MMD -MP
 
 SRC_UTILS = ft_atoi.c ft_putstr_fd.c get_current_time.c parsing.c \
-			philos_init.c put_error.c table_init.c
+			philos_init.c put_error.c table_init.c cleanups.c
 
-SRC_ROUTINE = 
+SRC_ROUTINE = check_sim_stop.c monitor_routine.c philo_eat.c \
+			 philo_routine.c print_action.c smart_sleep.c 
 
 SRC = philosopher.c \
 	  $(addprefix Utils/, $(SRC_UTILS)) \
