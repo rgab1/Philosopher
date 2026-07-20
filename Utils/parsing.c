@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/12 16:28:48 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/14 05:48:18 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/20 19:03:45 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static int	table_value_assignation(char **av, t_table *table)
 		table->max_meals = ft_atoi(av[i]);
 	else
 		table->max_meals = 0;
-	if (table->num_philos < 0 || table->time_to_die < 0
-		|| table->time_to_eat < 0 || table->time_to_sleep < 0
+	if (table->num_philos <= 0 || table->time_to_die <= 0
+		|| table->time_to_eat <= 0 || table->time_to_sleep <= 0
 		|| table->max_meals < 0)
 		return (put_error(ERROR_ARGS_POSITIVE_NBR), 1);
 	if (!av[i])
