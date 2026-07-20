@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/12 16:28:48 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/20 20:48:54 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/20 20:51:13 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	table_value_assignation(char **av, t_table *table)
 	int	i;
 
 	i = 1;
-	table->num_philos = ft_atoi(av[i++]); // a tester que la fonction atoi gere bien plusieurs +/-
+	table->num_philos = ft_atoi(av[i++]);
 	table->time_to_die = ft_atoi(av[i++]);
 	table->time_to_eat = ft_atoi(av[i++]);
 	table->time_to_sleep = ft_atoi(av[i++]);
