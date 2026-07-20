@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 05:10:41 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/20 20:29:41 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/20 22:44:54 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*philosopher_routine(void *arg)
 		pthread_mutex_unlock(philo->first_fork);
 		return (NULL);
 	}
-	smart_sleep(STAGGER(philo->id, philo->table->time_to_eat), philo->table);
+	smart_sleep((philo->id % 2) * 10, philo->table);
 	while (!check_sim_stop(philo->table))
 	{
 		philo_eat(philo);

@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 21:33:08 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/20 20:48:31 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/20 22:48:15 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ long	get_current_time(void)
 
 	if (gettimeofday(&time, NULL) == -1)
 		return (put_error(ERROR_GETTIMEOFDAY_FAILED), -1);
-	return (SEC_TO_MS(time.tv_sec) + MICRO_TO_MS(time.tv_usec));
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

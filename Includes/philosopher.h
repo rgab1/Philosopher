@@ -6,7 +6,7 @@
 /*   By: grivault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 19:28:22 by grivault          #+#    #+#             */
-/*   Updated: 2026/07/20 20:48:06 by grivault         ###   ########.fr       */
+/*   Updated: 2026/07/20 22:48:37 by grivault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHER_H
@@ -18,7 +18,6 @@
 # include <unistd.h>
 # include <sys/time.h>
 
-# include <macros.h>
 # include <errors.h>
 # include <routine.h>
 
